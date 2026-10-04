@@ -2,307 +2,178 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>GreenTech Wiki — Информационный портал</title>
-
-    <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>База ВУ — ЕИС ВАИ</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/style.css">
-    
 </head>
 <body>
+    <div class="eis-wrapper">
+        <!-- МЕСТА ПОД ШАПКУ / НАВИГАЦИЮ / ПОДВАЛ -->
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
 
-<header class="header">
-    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">☰</button>
-    <div class="logo" id="logo">
-        <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-            <img src="images/icons/logo.png" alt="GreenTech RP" style="height: 40px; width: auto;">
-        </a>
-    </div>
-</header>
+        <main class="eis-main">
+            <div class="eis-container">
+                <div class="eis-page-header">
+                    <h1 class="eis-page-title">База данных военных удостоверений</h1>
+                    <div class="eis-page-subtitle">Поиск и просмотр информации о выданных ВУ</div>
+                </div>
 
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<div class="main-layout">
-    <nav class="sidebar" id="sidebar"></nav>
-
-    <main class="content" id="contentArea">
-        <div class="page active" id="page-home">
-            <h1 class="page-title">GreenTech Wiki</h1>
-            <p class="page-subtitle">Информационный портал сервера GreenTech RolePlay</p>
-
-            <div class="quick-links-grid">
-                <a href="pages/vehicles.html" class="quick-link">
-                    <div class="quick-link-icon"><img src="images/icons/vehicles.png" alt="Автомобили"></div>
-                    <span>Автомобили</span>
-                </a>
-                <a href="pages/fraction-army.html" class="quick-link">
-                    <div class="quick-link-icon"><img src="images/icons/fractions.png" alt="Фракции"></div>
-                    <span>Фракции</span>
-                </a>
-                <a href="pages/systems.html" class="quick-link">
-                    <div class="quick-link-icon"><img src="images/icons/systems.png" alt="Системы"></div>
-                    <span>Системы</span>
-                </a>
-                <a href="pages/animations.html" class="quick-link">
-                    <div class="quick-link-icon"><img src="images/icons/animations.png" alt="Анимации"></div>
-                    <span>Анимации</span>
-                </a>
-                <a href="pages/rules.html" class="quick-link">
-                    <div class="quick-link-icon"><img src="images/icons/rules.png" alt="Правила"></div>
-                    <span>Правила</span>
-                </a>
-                <a href="pages/jobs.html" class="quick-link">
-                    <div class="quick-link-icon"><img src="images/icons/jobs.png" alt="Работы"></div>
-                    <span>Работы</span>
-                </a>
-                <a href="pages/tuning.html" class="quick-link">
-                    <div class="quick-link-icon"><i class="fas fa-wrench"></i></div>
-                    <span>Тюнинг</span>
-                </a>
-                <a href="pages/faq.html" class="quick-link">
-                    <div class="quick-link-icon"><img src="images/icons/faq.png" alt="FAQ"></div>
-                    <span>FAQ</span>
-                </a>
-            </div>
-
-            <div class="info-block servers-block">
-                <h3><i class="fas fa-server"></i> Статус сервера</h3>
-                <div class="servers-grid">
-                    <div class="server-card">
-                        <div class="server-status offline" id="statusDot"></div>
-                        <div class="server-info">
-                            <div class="server-name" id="serverName">Проверка сервера...</div>
-                            <div class="server-online">
-                                <span class="online-count" id="onlineNumber">—</span> /
-                                <span id="maxPlayers">—</span> игроков онлайн
+                <div class="eis-panel">
+                    <div class="eis-panel-header">
+                        <span class="eis-panel-title">Параметры поиска</span>
+                    </div>
+                    <div class="eis-panel-body">
+                        <form class="eis-search-form" id="searchForm" onsubmit="return false;">
+                            <div class="eis-form-row">
+                                <div class="eis-form-group">
+                                    <label class="eis-form-label">ФИО</label>
+                                    <input type="text" class="eis-input" id="searchFIO" placeholder="Введите ФИО">
+                                </div>
+                                <div class="eis-form-group">
+                                    <label class="eis-form-label">Номер ВУ</label>
+                                    <input type="text" class="eis-input" id="searchVU" placeholder="Введите номер">
+                                </div>
+                                <div class="eis-form-group">
+                                    <label class="eis-form-label">Кем выдано</label>
+                                    <input type="text" class="eis-input" id="searchIssued" placeholder="ФИО инспектора">
+                                </div>
                             </div>
+                            <div class="eis-form-row">
+                                <div class="eis-form-group">
+                                    <label class="eis-form-label">Дата с</label>
+                                    <input type="date" class="eis-input" id="searchDateFrom">
+                                </div>
+                                <div class="eis-form-group">
+                                    <label class="eis-form-label">Дата по</label>
+                                    <input type="date" class="eis-input" id="searchDateTo">
+                                </div>
+                                <div class="eis-form-group">
+                                    <label class="eis-form-label">Статус</label>
+                                    <select class="eis-select" id="searchStatus">
+                                        <option value="">Все статусы</option>
+                                        <option value="valid">Действительные</option>
+                                        <option value="expiring">Истекающие</option>
+                                        <option value="expired">Просроченные</option>
+                                        <option value="archived">Архив</option>
+                                    </select>
+                                </div>
+                                <div class="eis-form-group eis-form-group-btn">
+                                    <label class="eis-form-label">&nbsp;</label>
+                                    <button type="button" class="eis-btn eis-btn-danger" onclick="resetSearch()">Сбросить</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="eis-panel">
+                    <div class="eis-panel-header">
+                        <span class="eis-panel-title">Результаты поиска</span>
+                        <span class="eis-badge" id="resultsCount">ЗАПИСЕЙ: 0</span>
+                    </div>
+                    <div class="eis-panel-body" id="results">
+                        <div class="eis-loading">
+                            <div class="eis-spinner"></div>
+                            <span>Загрузка данных...</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </main>
 
-            <div class="info-block news-block">
-                <h3>
-                    <i class="fas fa-newspaper"></i> Последние новости
-                </h3>
-                <div id="newsContainer">
-                    <div class="news-loader">
-                        <div class="news-spinner"></div>
-                        <span>Загрузка новостей...</span>
+        <div id="site-footer"></div>
+    </div>
+
+    <div class="eis-modal" id="photoModal">
+        <span class="eis-modal-close" onclick="closeModal()">×</span>
+        <span class="eis-modal-nav eis-modal-prev" onclick="prevPhoto()">‹</span>
+        <span class="eis-modal-nav eis-modal-next" onclick="nextPhoto()">›</span>
+        <div class="eis-modal-content">
+            <img id="modalImage" src="" alt="Документ">
+            <div class="eis-modal-counter" id="modalCounter"></div>
+        </div>
+    </div>
+
+    <!-- Модалка редактирования ВУ -->
+    <div class="eis-modal-form" id="editVUModal">
+        <div class="eis-modal-form-content" style="max-width: 700px;">
+            <div class="eis-modal-form-header">
+                <h3>Редактирование ВУ</h3>
+                <span class="eis-modal-form-close" onclick="closeEditVUModal()">×</span>
+            </div>
+            <div class="eis-modal-form-body">
+                <input type="hidden" id="evId">
+
+                <div class="eis-form-row">
+                    <div class="eis-form-group">
+                        <label class="eis-form-label">Номер ВУ *</label>
+                        <input type="text" class="eis-input" id="evNumber" required>
+                    </div>
+                    <div class="eis-form-group">
+                        <label class="eis-form-label">Статус</label>
+                        <select class="eis-select" id="evStatus">
+                            <option value="active">Активно</option>
+                            <option value="archived">Архив</option>
+                        </select>
                     </div>
                 </div>
-            </div>
 
-            <div class="info-block resources-block">
-                <h3><i class="fas fa-link"></i> Официальные ресурсы</h3>
-                <div class="resources-grid">
-                    <a href="https://vk.com/greentech_rp" target="_blank" class="resource-link"><i class="fab fa-vk"></i> Официальная группа ВК</a>
-                    <a href="https://vk.com/greentech_roleplay_free" target="_blank" class="resource-link"><i class="fab fa-vk"></i> Свободная группа ВК</a>
-                    <a href="https://t.me/greentech_rp" target="_blank" class="resource-link"><i class="fab fa-telegram-plane"></i> Telegram</a>
-                    <a href="https://www.youtube.com/@GreenTechOfficialChannel" target="_blank" class="resource-link"><i class="fab fa-youtube"></i> YouTube</a>
-                    <a href="https://discord.gg/YxmyH4QxfR" target="_blank" class="resource-link"><i class="fab fa-discord"></i> Discord</a>
-                    <a href="https://forum.greentech-rp.com/" target="_blank" class="resource-link"><i class="fas fa-users"></i> Форум</a>
+                <div class="eis-form-group">
+                    <label class="eis-form-label">Звание</label>
+                    <input type="text" class="eis-input" id="evRank">
                 </div>
+
+                <div class="eis-form-row">
+                    <div class="eis-form-group">
+                        <label class="eis-form-label">Фамилия *</label>
+                        <input type="text" class="eis-input" id="evLastName">
+                    </div>
+                    <div class="eis-form-group">
+                        <label class="eis-form-label">Имя *</label>
+                        <input type="text" class="eis-input" id="evFirstName">
+                    </div>
+                    <div class="eis-form-group">
+                        <label class="eis-form-label">Отчество</label>
+                        <input type="text" class="eis-input" id="evMiddleName">
+                    </div>
+                </div>
+
+                <div class="eis-form-row">
+                    <div class="eis-form-group">
+                        <label class="eis-form-label">Дата выдачи *</label>
+                        <input type="date" class="eis-input" id="evIssueDate">
+                    </div>
+                    <div class="eis-form-group">
+                        <label class="eis-form-label">Действительно до *</label>
+                        <input type="date" class="eis-input" id="evExpiryDate">
+                    </div>
+                </div>
+
+                <div class="eis-form-group">
+                    <label class="eis-form-label">Кем выдано</label>
+                    <input type="text" class="eis-input" id="evIssuedBy">
+                </div>
+
+                <div class="eis-auth-error" id="evError"></div>
+            </div>
+            <div class="eis-modal-form-footer">
+                <button type="button" class="eis-btn eis-btn-secondary" onclick="closeEditVUModal()">Отмена</button>
+                <button type="button" class="eis-btn eis-btn-primary" id="evSaveBtn" onclick="saveEditVU()">
+                    Сохранить
+                </button>
             </div>
         </div>
-    </main>
-</div>
-
-<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 19V5M5 12l7-7 7 7"/>
-    </svg>
-</button>
-
-<footer class="footer">
-    <div class="footer-copyright">
-        © 2026 GreenTech Wiki. Информационный портал.
     </div>
-    <div class="footer-right">
-        <a href="pages/about-site.html" class="about-site-btn">
-            О сайте
-        </a>
-    </div>
-</footer>
 
-<script src="js/common.js"></script>
-<script src="js/navigation.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const statusDot = document.getElementById('statusDot');
-        const serverName = document.getElementById('serverName');
-        const onlineNumber = document.getElementById('onlineNumber');
-        const maxPlayers = document.getElementById('maxPlayers');
-
-        async function updateServerStatus() {
-            const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 4000);
-
-            try {
-                const response = await fetch('js/server-status.php', {
-                    cache: 'no-store',
-                    signal: controller.signal
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
-                const data = await response.json();
-                const isOnline = data.status === true || data.status === 1;
-
-                statusDot.className = `server-status ${isOnline ? 'online' : 'offline'}`;
-                serverName.textContent = isOnline ? data.hostname : 'Сервер недоступен';
-                onlineNumber.textContent = isOnline ? data.players : '0';
-                maxPlayers.textContent = data.maxplayers || '—';
-            } catch (error) {
-                statusDot.className = 'server-status offline';
-                serverName.textContent = 'Сервер недоступен';
-                onlineNumber.textContent = '0';
-                maxPlayers.textContent = '—';
-            } finally {
-                clearTimeout(timeout);
-            }
-        }
-
-        updateServerStatus();
-    });
-
-    (function() {
-        const container = document.getElementById('newsContainer');
-        
-        const NEWS_URL = 'https://greentech-samp-cdn-ru.itcloud.io/prod/launcher/news.json';
-        
-        const PROXIES = [
-            'https://api.allorigins.win/raw?url=',
-            'https://corsproxy.io/?',
-            'https://api.codetabs.com/v1/proxy?quest='
-        ];
-
-        function createNewsCard(item) {
-            const card = document.createElement('div');
-            card.className = 'news-card';
-
-            const img = document.createElement('img');
-            img.className = 'news-image';
-            img.src = item.ImgUrl || '';
-            img.alt = item.Title || 'Новость';
-            img.loading = 'lazy';
-            img.onerror = function() {
-                this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="225" viewBox="0 0 400 225"%3E%3Crect width="400" height="225" fill="%23161c27"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="18" fill="%235a6e8e"%3EНет изображения%3C/text%3E%3C/svg%3E';
-            };
-
-            const content = document.createElement('div');
-            content.className = 'news-content';
-
-            const title = document.createElement('h4');
-            title.className = 'news-title';
-            title.textContent = item.Title || 'Без заголовка';
-
-            const desc = document.createElement('p');
-            desc.className = 'news-desc';
-            desc.textContent = item.Desc || '';
-
-            const link = document.createElement('a');
-            link.className = 'news-link';
-            link.href = item.Link || '#';
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            link.textContent = 'Читать';
-
-            content.appendChild(title);
-            content.appendChild(desc);
-            content.appendChild(link);
-
-            card.appendChild(img);
-            card.appendChild(content);
-
-            return card;
-        }
-
-        async function fetchWithProxy(url, proxyIndex = 0) {
-            if (proxyIndex >= PROXIES.length) {
-                throw new Error('Все прокси-серверы недоступны');
-            }
-
-            const proxyUrl = PROXIES[proxyIndex] + encodeURIComponent(url);
-
-            try {
-                const response = await fetch(proxyUrl, {
-                    signal: AbortSignal.timeout(10000)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
-                const text = await response.text();
-                return JSON.parse(text);
-            } catch (error) {
-                return fetchWithProxy(url, proxyIndex + 1);
-            }
-        }
-
-        async function fetchNews() {
-			const CACHE_KEY = 'greentech_news_cache';
-			const CACHE_TIME_KEY = 'greentech_news_time';
-			const CACHE_DURATION = 720 * 60 * 1000 * 2; // 24 часа
-
-			try {
-				const cached = localStorage.getItem(CACHE_KEY);
-				const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
-				const now = Date.now();
-
-				if (cached && cachedTime && (now - parseInt(cachedTime)) < CACHE_DURATION) {
-					const data = JSON.parse(cached);
-					renderNews(data);
-					return;
-				}
-
-				const data = await fetchWithProxy(NEWS_URL);
-
-				if (!Array.isArray(data) || data.length === 0) {
-					throw new Error('Получены некорректные данные');
-				}
-
-				localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-				localStorage.setItem(CACHE_TIME_KEY, String(now));
-
-				renderNews(data);
-
-			} catch (error) {
-				const cached = localStorage.getItem(CACHE_KEY);
-				if (cached) {
-					try {
-						const data = JSON.parse(cached);
-						renderNews(data);
-						return;
-					} catch (e) {}
-				}
-
-				showError(error.message);
-			}
-		}
-		
-		function renderNews(data) {
-			container.innerHTML = '';
-			const grid = document.createElement('div');
-			grid.className = 'news-grid';
-
-			const lastTen = data.slice(0, 10);
-			lastTen.forEach(item => {
-				const card = createNewsCard(item);
-				grid.appendChild(card);
-			});
-
-			container.appendChild(grid);
-		}
-
-        fetchNews();
-    })();
-</script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/database.js"></script>
 </body>
 </html>
